@@ -1958,8 +1958,10 @@ public class TeXParser extends TeXObjectList
    public void parse(TeXReader reader, int mode)
      throws IOException
    {
+	   System.out.println("TeXParser.parse(Reader) 1 " + reader);
       if (reader != this.reader)
       {
+    	  System.out.println("TeXParser.parse(Reader) 2");
          // Is the current stack non-empty?
          // If it is, save remaining content for later
 
@@ -1967,6 +1969,7 @@ public class TeXParser extends TeXObjectList
 
          if (this.reader != null)
          {
+        	 System.out.println("TeXParser.parse(Reader) 3");
             if (isDebugMode(DEBUG_IO))
             {
                logMessage("CURRENT READER "+this.reader);
@@ -2039,6 +2042,8 @@ public class TeXParser extends TeXObjectList
          logMessage("PARSE setting mode: "+mode);
       }
 
+      System.out.println("TeXParser.parse(Reader) 4");
+      
       settings.setMode(mode);
 
       try
@@ -2047,6 +2052,7 @@ public class TeXParser extends TeXObjectList
 
          while (!done)
          {
+        	 System.out.println("   TeXParser.parse(Reader) 5");
             boolean eof = (!fetchNext() || isEmpty());
 
             if (isDebugMode(DEBUG_IO))
@@ -2075,6 +2081,7 @@ public class TeXParser extends TeXObjectList
 
             while (size() > 0)
             {
+            	 System.out.println("      TeXParser.parse(Reader) 6");
                TeXObject object = pop();
 
                if (isDebugMode(DEBUG_POPPED))
