@@ -55,7 +55,8 @@ public class L2LGroup extends Group
          return;
       }
 
-      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+//      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+      LaTeXParserListener listener = (LaTeXParserListener)parser.getListener();	// wilbur
 
       Writeable writeable = listener.getWriteable();
 
@@ -104,7 +105,8 @@ public class L2LGroup extends Group
    {
       preprocess(parser);
 
-      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+//      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+      TeXParserListener listener = parser.getListener();	// wilbur
 
       Writeable writeable = listener.getWriteable();
       writeable.writeCodePoint(parser.getBgChar());
@@ -115,7 +117,8 @@ public class L2LGroup extends Group
    public void endGroup(TeXParser parser)
     throws IOException
    {
-      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+//      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+      TeXParserListener listener = parser.getListener();	// wilbur
 
       Writeable writeable = listener.getWriteable();
       parser.endGroup();

@@ -57,13 +57,15 @@ public class L2LMathDeclaration extends MathDeclaration
    {
       doModeSwitch(parser);
 
-      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+//      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+      TeXParserListener listener = parser.getListener();	// wilbur
 
       EndDeclaration endDec = getEndDeclaration();
+      Writeable writeable = listener.getWriteable();	// wilbur
 
       if (endDec != null)
       {
-         Writeable writeable = parser.getListener().getWriteable();
+//         Writeable writeable = parser.getListener().getWriteable();	// wilbur
 
          writeable.writeCodePoint(parser.getEscChar());
 
@@ -87,11 +89,17 @@ public class L2LMathDeclaration extends MathDeclaration
       }
       else
       {
-         listener.writeCodePoint(parser.getEscChar());
-         listener.write("begin");
-         listener.writeCodePoint(parser.getBgChar());
-         listener.write(getName());
-         listener.writeCodePoint(parser.getEgChar());
+         writeable.writeCodePoint(parser.getEscChar());
+         writeable.write("begin");
+         writeable.writeCodePoint(parser.getBgChar());
+         writeable.write(getName());
+         writeable.writeCodePoint(parser.getEgChar());
+         
+//         listener.writeCodePoint(parser.getEscChar());
+//         listener.write("begin");
+//         listener.writeCodePoint(parser.getBgChar());
+//         listener.write(getName());
+//         listener.writeCodePoint(parser.getEgChar());
       }
    }
 
@@ -106,13 +114,15 @@ public class L2LMathDeclaration extends MathDeclaration
    {
       revertModeSwitch(parser);
 
-      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+//      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+      TeXParserListener listener = parser.getListener();	// wilbur
 
       EndDeclaration endDec = getEndDeclaration();
+      Writeable writeable = listener.getWriteable();	// wilbur
 
       if (endDec != null)
       {
-         Writeable writeable = parser.getListener().getWriteable();
+//         Writeable writeable = parser.getListener().getWriteable();	// wilbur
 
          writeable.writeCodePoint(parser.getEscChar());
 
@@ -134,12 +144,17 @@ public class L2LMathDeclaration extends MathDeclaration
          }
       }
       else
-      {
-         listener.writeCodePoint(parser.getEscChar());
-         listener.write("end");
-         listener.writeCodePoint(parser.getBgChar());
-         listener.write(getName());
-         listener.writeCodePoint(parser.getEgChar());
+      {	// wilbur:
+    	  writeable.writeCodePoint(parser.getEscChar());
+    	  writeable.write("end");
+    	  writeable.writeCodePoint(parser.getBgChar());
+    	  writeable.write(getName());
+    	  writeable.writeCodePoint(parser.getEgChar());
+//         listener.writeCodePoint(parser.getEscChar());
+//         listener.write("end");
+//         listener.writeCodePoint(parser.getBgChar());
+//         listener.write(getName());
+//         listener.writeCodePoint(parser.getEgChar());
       }
    }
 }

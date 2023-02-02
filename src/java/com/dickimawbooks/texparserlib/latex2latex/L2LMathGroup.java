@@ -83,7 +83,8 @@ public class L2LMathGroup extends MathGroup
          delim = (openDelim == null ? String.format("%s[", esc) : openDelim);
          endDelim = (closeDelim == null ? String.format("%s]", esc):closeDelim);
 
-         LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+//         LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+         LaTeXParserListener listener = (LaTeXParserListener)parser.getListener();	// wilbur
 
          StringBuilder argStr = new StringBuilder();
 
@@ -122,7 +123,8 @@ public class L2LMathGroup extends MathGroup
             ControlSequence original = 
                ((Obsolete)object).getOriginalCommand();
 
-            LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+//            LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+            LaTeXParserListener listener = (LaTeXParserListener)parser.getListener();	// wilbur
 
             ControlSequence cs = listener.getControlSequence(
                "math"+original.getName());

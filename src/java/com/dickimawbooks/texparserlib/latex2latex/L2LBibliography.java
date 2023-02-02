@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 import com.dickimawbooks.texparserlib.*;
+import com.dickimawbooks.texparserlib.latex.LaTeXParserListener;
 
 public class L2LBibliography extends L2LControlSequence
 {
@@ -43,8 +44,8 @@ public class L2LBibliography extends L2LControlSequence
    private void processBib(TeXParser parser, TeXObject arg)
       throws IOException
    {
-      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
-
+//      LaTeX2LaTeX listener = (LaTeX2LaTeX)parser.getListener();
+	  TeXParserListener listener = (TeXParserListener)parser.getListener();	// wilbur
       String bibStr = arg.toString(parser);
 
       Writeable writeable = listener.getWriteable();
@@ -63,7 +64,9 @@ public class L2LBibliography extends L2LControlSequence
          bibPaths[i] = new TeXPath(parser, bibList[i].trim(), "bib");
       }
 
-      listener.bibliography(bibPaths);
+      if (listener instanceof LaTeX2LaTeX) {					// wilbur
+    	  ((LaTeX2LaTeX)listener).bibliography(bibPaths);		// wilbur
+      }
    }
 
    public void process(TeXParser parser, TeXObjectList stack)

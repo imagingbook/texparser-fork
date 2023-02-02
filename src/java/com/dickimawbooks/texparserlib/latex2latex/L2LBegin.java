@@ -43,7 +43,8 @@ public class L2LBegin extends Begin
    protected void doBegin(TeXParser parser, TeXObjectList stack, String name)
      throws IOException
    {
-      LaTeX2LaTeX listener = ((LaTeX2LaTeX)parser.getListener());
+//      LaTeX2LaTeX listener = ((LaTeX2LaTeX)parser.getListener());
+	   TeXParserListener listener = parser.getListener();	// wilbur
 
       ControlSequence cs = listener.getControlSequence(name);
 
@@ -53,7 +54,8 @@ public class L2LBegin extends Begin
          decl.doModeSwitch(parser);
       }
 
-      listener.write(String.format("%s%s%s%s%s",
+      Writeable writer = listener.getWriteable(); 			// wilbur
+      writer.write(String.format("%s%s%s%s%s",				// wilbur
         new String(Character.toChars(parser.getEscChar())), 
         getName(), 
         new String(Character.toChars(parser.getBgChar())), 
