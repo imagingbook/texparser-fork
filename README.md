@@ -1,3 +1,5 @@
+This is a refactored version of [https://github.com/nlct/texparser](https://github.com/nlct/texparser) (forked 2023/02/01):
+
 # TeX Parser Library
 
 This code is *highly experimental* and still under construction. It
